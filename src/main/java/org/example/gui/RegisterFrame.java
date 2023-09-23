@@ -10,19 +10,19 @@ import java.awt.event.ActionListener;
 
 public class RegisterFrame extends JFrame {
     private static boolean isRegistered = false;
-    private static String registeredUsername; // Add this variable
+    private static String registeredUsername;
 
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JPasswordField confirmPasswordField; // Add the Confirm Password field
-    private JButton backButton; // Move the back button before the register button
+    private JPasswordField confirmPasswordField;
+    private JButton backButton;
     private JButton registerButton;
-    private JLabel imageLabel; // Add the label for the image
+    private JLabel imageLabel;
 
     public RegisterFrame() {
         setTitle("Registration");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(800, 600); // Adjust the frame size to accommodate the new field
+        setSize(800, 600);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -33,8 +33,7 @@ public class RegisterFrame extends JFrame {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
 
-        // Load and resize the image to fit within the frame
-        ImageIcon imageIcon = resizeImage("src/main/resources/images/register.png", 500, 250); // Adjust width and height as needed
+        ImageIcon imageIcon = resizeImage("src/main/resources/images/register.png", 500, 250);
         imageLabel = new JLabel(imageIcon);
         panel.add(imageLabel, gbc);
 
@@ -42,29 +41,27 @@ public class RegisterFrame extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
 
         JLabel usernameLabel = new JLabel("Username:");
-        usernameField = new JTextField(2); // Set the preferred width of the username field
-        gbc.insets = new Insets(5, 5, 5, 5); // Add space around components
+        usernameField = new JTextField(2);
         panel.add(usernameLabel, gbc);
         gbc.gridy++;
         panel.add(usernameField, gbc);
 
         JLabel passwordLabel = new JLabel("Password:");
-        passwordField = new JPasswordField(2); // Set the preferred width of the password field
+        passwordField = new JPasswordField(2);
         gbc.gridy++;
         panel.add(passwordLabel, gbc);
         gbc.gridy++;
         panel.add(passwordField, gbc);
 
         JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
-        confirmPasswordField = new JPasswordField(2); // Set the preferred width of the Confirm Password field
+        confirmPasswordField = new JPasswordField(2);
         gbc.gridy++;
         panel.add(confirmPasswordLabel, gbc);
         gbc.gridy++;
         panel.add(confirmPasswordField, gbc);
 
-        // Create a panel for the buttons and add them next to each other
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        backButton = new JButton("Back"); // Create the back button
+        backButton = new JButton("Back");
         buttonPanel.add(backButton);
         registerButton = new JButton("Register");
         buttonPanel.add(registerButton);
@@ -73,8 +70,7 @@ public class RegisterFrame extends JFrame {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Add code to go back to the main frame
-                dispose(); // Close the registration frame
+                dispose();
                 MainFrame mainFrame = new MainFrame();
                 mainFrame.setVisible(true);
             }
@@ -82,43 +78,39 @@ public class RegisterFrame extends JFrame {
 
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Validate the input fields
                 String username = usernameField.getText();
                 char[] passwordChars = passwordField.getPassword();
                 char[] confirmPasswordChars = confirmPasswordField.getPassword();
 
-                // Check if the fields are empty
                 if (username.isEmpty() || passwordChars.length == 0 || confirmPasswordChars.length == 0) {
                     JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Registration Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Exit the registration process
+                    return;
                 }
 
-                // Convert char arrays to strings for comparison
                 String password = new String(passwordChars);
                 String confirmPassword = new String(confirmPasswordChars);
 
-                // Check if the password and confirm password match
                 if (!password.equals(confirmPassword)) {
                     JOptionPane.showMessageDialog(null, "Passwords do not match.", "Registration Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Exit the registration process
+                    return;
                 }
 
-                // Check if the username already exists in the database
                 UsersDAO userDAO = new UsersDAO();
                 if (userDAO.doesUsernameExist(username)) {
                     JOptionPane.showMessageDialog(null, "Username is already taken.", "Registration Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Exit the registration process
+                    return;
                 }
 
-                // If all checks pass, insert the user into the database
                 Users newUser = new Users();
                 newUser.setUsername(username);
                 newUser.setPassword(password);
 
-                if (userDAO.addUser(newUser)) {
+                int userId = userDAO.addUser(newUser);
+
+                if (userId != -1) {
                     JOptionPane.showMessageDialog(null, "Registration successful!", "Registration Success", JOptionPane.INFORMATION_MESSAGE);
                     isRegistered = true;
-                    registeredUsername = username; // Store the registered username
+                    registeredUsername = username;
                     dispose();
                     BudgetFrame budgetFrame = new BudgetFrame();
                     budgetFrame.setVisible(true);
@@ -146,7 +138,7 @@ public class RegisterFrame extends JFrame {
         return isRegistered;
     }
     public static String getRegisteredUsername() {
-        return registeredUsername; // Return the registered username
+        return registeredUsername;
     }
 
 }

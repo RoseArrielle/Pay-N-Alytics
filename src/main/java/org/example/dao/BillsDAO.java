@@ -17,13 +17,13 @@ public class BillsDAO {
         connection = DatabaseConfig.getConnection();
     }
 
-    public boolean addBill(Bills bills) {
+    public boolean addBill(int budget_id, String name, Double amount) {
         try {
             String sql = "INSERT INTO bills (budget_id, name, amount) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, bills.getBudget_Id());
-            preparedStatement.setString(2, bills.getName());
-            preparedStatement.setDouble(3, bills.getAmount());
+            preparedStatement.setInt(1, budget_id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setDouble(3, amount);
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
@@ -66,7 +66,6 @@ public class BillsDAO {
         }
     }
 
-    // Update a bill's information
     public boolean updateBill(Bills bill) {
         try {
             String sql = "UPDATE bills SET name = ?, amount = ? WHERE id = ?";

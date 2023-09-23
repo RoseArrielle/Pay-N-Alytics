@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63fd1fa8-8a28-4165-b7cf-c21145e4ac2f" name="Changes" comment="new updates">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/ChangePasswordFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/change-pass.png" afterDir="false" />
+    <list default="true" id="63fd1fa8-8a28-4165-b7cf-c21145e4ac2f" name="Changes" comment="added change password">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/CreateBudgetFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/check-bills.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/BillsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/BillsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/BudgetDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/BudgetDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/UsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/UsersDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/BudgetFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/BudgetFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/ChangePasswordFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/ChangePasswordFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/ExportFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/RegisterFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/RegisterFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695405730258</updated>
-      <workItem from="1695405731270" duration="23309000" />
+      <workItem from="1695405731270" duration="39695000" />
     </task>
     <task id="LOCAL-00001" summary="new updates">
       <option name="closed" value="true" />
@@ -82,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695425976580</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added change password">
+      <option name="closed" value="true" />
+      <created>1695437024723</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695437024723</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +118,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="new updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="new updates" />
+    <MESSAGE value="added change password" />
+    <option name="LAST_COMMIT_MESSAGE" value="added change password" />
   </component>
 </project>

@@ -16,7 +16,7 @@ public class ChangePasswordFrame extends JFrame {
     private JPasswordField confirmPasswordField;
     private JButton changePasswordButton;
 
-    private UsersDAO usersDAO; // You need to have a UsersDAO for database operations
+    private UsersDAO usersDAO;
 
     public ChangePasswordFrame() {
         usersDAO = new UsersDAO();
@@ -35,11 +35,12 @@ public class ChangePasswordFrame extends JFrame {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
 
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/images/change-pass.png"); // Replace with the path to your image
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/images/change-pass.png");
         Image image = imageIcon.getImage();
-        Image resizedImage = image.getScaledInstance(450, 225, Image.SCALE_SMOOTH); // Set desired width and height
+        Image resizedImage = image.getScaledInstance(450, 225, Image.SCALE_SMOOTH);
         ImageIcon resizedImageIcon = new ImageIcon(resizedImage);
         JLabel imageLabel = new JLabel(resizedImageIcon);
+
         gbc.insets = new Insets(10, 10, 5, 10);
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -50,13 +51,13 @@ public class ChangePasswordFrame extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
 
         JLabel usernameLabel = new JLabel("Username:");
-        usernameField = new JTextField(30); // Adjust the field size as needed
+        usernameField = new JTextField(30);
         panel.add(usernameLabel, gbc);
         gbc.gridx++;
         panel.add(usernameField, gbc);
 
         JLabel currentPasswordLabel = new JLabel("Current Password:");
-        currentPasswordField = new JPasswordField(30); // Adjust the field size as needed
+        currentPasswordField = new JPasswordField(30);
         gbc.gridx = 0;
         gbc.gridy++;
         panel.add(currentPasswordLabel, gbc);
@@ -64,7 +65,7 @@ public class ChangePasswordFrame extends JFrame {
         panel.add(currentPasswordField, gbc);
 
         JLabel newPasswordLabel = new JLabel("New Password:");
-        newPasswordField = new JPasswordField(30); // Adjust the field size as needed
+        newPasswordField = new JPasswordField(30);
         gbc.gridx = 0;
         gbc.gridy++;
         panel.add(newPasswordLabel, gbc);
@@ -72,7 +73,7 @@ public class ChangePasswordFrame extends JFrame {
         panel.add(newPasswordField, gbc);
 
         JLabel confirmPasswordLabel = new JLabel("Confirm New Password:");
-        confirmPasswordField = new JPasswordField(30); // Adjust the field size as needed
+        confirmPasswordField = new JPasswordField(30);
         gbc.gridx = 0;
         gbc.gridy++;
         panel.add(confirmPasswordLabel, gbc);
@@ -106,7 +107,6 @@ public class ChangePasswordFrame extends JFrame {
                     String storedPassword = user.getPassword();
 
                     if (currentPassword.equals(storedPassword)) {
-                        // Current password is correct, proceed to change the password
                         if (newPassword.equals(confirmPassword)) {
                             if (usersDAO.updateUserPassword(username, newPassword)) {
                                 JOptionPane.showMessageDialog(ChangePasswordFrame.this, "Password changed successfully", "Success", JOptionPane.INFORMATION_MESSAGE);

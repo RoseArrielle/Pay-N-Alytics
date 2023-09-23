@@ -3,10 +3,7 @@ package org.example.dao;
 import org.example.config.DatabaseConfig;
 import org.example.model.Users;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UsersDAO {
     private Connection connection;
@@ -15,7 +12,28 @@ public class UsersDAO {
         connection = DatabaseConfig.getConnection();
     }
 
-    public boolean addUser (Users user){
+    public int addUser (Users user){
+        int generatedUserId = -1; // Initialize the generated user ID
+        try {
+            String sql = "INSERT INTO users (username, password) VALUES (?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    generatedUserId = generatedKeys.getInt(1); // Get the generated user ID
+                }
+            }
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return generatedUserId; // Return the generated user ID, or -1 if an error occurred
+
+    }
+
+    public boolean add (Users user) {
         try {
             String sql = "INSERT INTO users (username, password) VALUES (?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -23,7 +41,7 @@ public class UsersDAO {
             preparedStatement.setString(2, user.getPassword());
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
-        }catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return false;
         }
@@ -57,13 +75,13 @@ public class UsersDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
-                return count > 0; // If count is greater than 0, the username exists
+                return count > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false; // If an exception occurs or no result is found, assume the username does not exist
+        return false;
     }
 
     public int getIdByUsername(String username){
@@ -78,7 +96,7 @@ public class UsersDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // Return a default value or handle the case when the username is not found
+
         return -1;
     }
 

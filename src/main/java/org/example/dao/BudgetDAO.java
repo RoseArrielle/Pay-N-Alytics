@@ -64,6 +64,25 @@ public class BudgetDAO {
         }
     }
 
+    public int createNewBudget(String budgetName) {
+        try {
+            // Insert a new budget into the database and retrieve its generated ID
+            String sql = "INSERT INTO budgets (budget_name) VALUES (?) RETURNING id";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, budgetName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            } else {
+                return -1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 
 
 }
