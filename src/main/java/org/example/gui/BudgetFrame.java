@@ -1,10 +1,8 @@
 package org.example.gui;
 
 import org.example.dao.UsersDAO;
-import org.example.model.Users;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -116,7 +114,9 @@ public class BudgetFrame extends JFrame {
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // still adding
+                dispose();
+                ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame();
+                changePasswordFrame.setVisible(true);
             }
         });
 
